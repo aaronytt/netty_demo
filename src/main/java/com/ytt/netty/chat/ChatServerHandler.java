@@ -52,7 +52,6 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-
         System.out.println(channel.remoteAddress() + " -> leave");
     }
 
@@ -60,6 +59,6 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
         channelGroup.writeAndFlush("[server] - " + channel.remoteAddress() + " disconnect\n");
-        channelGroup.remove(channel);
+        System.out.println(channelGroup.size());
     }
 }
