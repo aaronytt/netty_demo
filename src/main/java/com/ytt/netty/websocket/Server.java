@@ -28,7 +28,7 @@ public class Server {
             serverBootstrap.group(bossGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(null);
+                    .childHandler(new WebSocketChannelInitialaizer());
 
             ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8089)).sync();
             channelFuture.channel().closeFuture().sync();
