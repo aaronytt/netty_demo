@@ -3,8 +3,6 @@ package com.ytt.netty.chat;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import java.util.logging.SocketHandler;
-
 /**
  * @Author: aaron
  * @Descriotion:

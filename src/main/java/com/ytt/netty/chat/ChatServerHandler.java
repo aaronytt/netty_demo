@@ -22,10 +22,10 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
         Channel channel = ctx.channel();
 
         channelGroup.forEach(channelObject -> {
-            if(!channel.equals(channelObject)){
-                channel.writeAndFlush(channel.remoteAddress() + " 发送的消息：" + msg);
+            if(channelObject != channel){
+                channelObject.writeAndFlush(channel.remoteAddress() + " 发送的消息：" + msg + "\n");
             }else {
-                channel.writeAndFlush(" [自己] " + msg);
+                channelObject.writeAndFlush(" [自己] " + msg + "\n");
             }
         });
     }
@@ -39,33 +39,27 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-
         channelGroup.writeAndFlush("[server] - " + channel.remoteAddress() + " join\n");
-
         channelGroup.add(channel);
-
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-
-        System.out.println(channel.remoteAddress() + " -> online\n");
+        System.out.println(channel.remoteAddress() + " -> online");
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
 
-        System.out.println(channel.remoteAddress() + " -> leave\n");
+        System.out.println(channel.remoteAddress() + " -> leave");
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-
         channelGroup.writeAndFlush("[server] - " + channel.remoteAddress() + " disconnect\n");
-
         channelGroup.remove(channel);
     }
 }
