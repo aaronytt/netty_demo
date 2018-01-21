@@ -1,4 +1,4 @@
-package com.ytt.netty.fourthexample;
+package com.ytt.netty.heartbeatexample;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

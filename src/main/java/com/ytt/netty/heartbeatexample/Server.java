@@ -1,6 +1,5 @@
-package com.ytt.netty.fourthexample;
+package com.ytt.netty.heartbeatexample;
 
-import com.ytt.netty.chat.ChatServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;

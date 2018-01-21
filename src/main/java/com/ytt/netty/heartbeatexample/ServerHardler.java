@@ -1,4 +1,4 @@
-package com.ytt.netty.fourthexample;
+package com.ytt.netty.heartbeatexample;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
