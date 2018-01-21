@@ -21,7 +21,7 @@ public class ChatServer {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new ChatServerInitalizer());
+                    .childHandler(new ChatServerInitializer());
         }finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
