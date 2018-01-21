@@ -15,7 +15,7 @@ import io.netty.util.CharsetUtil;
  * @Date: 12:16 2018/1/21
  * @Modiflid By:
  */
-public class ChatServerInitalizer extends ChannelInitializer<SocketChannel> {
+public class ChatServerInitializer extends ChannelInitializer<SocketChannel> {
 
 
     @Override
