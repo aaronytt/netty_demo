@@ -1,4 +1,4 @@
-package com.ytt.netty.secondExample;
+package com.ytt.netty.secondexample;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -12,10 +12,10 @@ import io.netty.util.CharsetUtil;
 /**
  * @Author: aaron
  * @Descriotion:
- * @Date: 14:30 2018/1/20
+ * @Date: 14:08 2018/1/20
  * @Modiflid By:
  */
-public class MyClientInitializer extends ChannelInitializer<SocketChannel> {
+public class MyServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
@@ -24,6 +24,7 @@ public class MyClientInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new LengthFieldPrepender(4));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
-        pipeline.addLast(new MyClientHandler());
+        pipeline.addLast(new MyServerHardler());
+
     }
 }
