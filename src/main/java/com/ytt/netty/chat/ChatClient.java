@@ -1,11 +1,16 @@
 package com.ytt.netty.chat;
 
 import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * @Author: aaron
@@ -15,7 +20,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  */
 public class ChatClient {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
 
         try{
@@ -24,8 +29,17 @@ public class ChatClient {
                     .channel(NioSocketChannel.class)
                     .handler(new ChatClientInitializer());
 
-            ChannelFuture channelFuture = bootstrap.connect("localhost",8089).sync();
-            channelFuture.channel().closeFuture().sync();
+//            ChannelFuture channelFuture = bootstrap.connect("localhost",8089).sync();
+//            channelFuture.channel().closeFuture().sync();
+
+            Channel channel = bootstrap.connect("localhost",8089).sync().channel();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+            for( ; ; ){
+                channel.writeAndFlush(br.readLine() + "\r\n");
+            }
+
         }finally {
             eventLoopGroup.shutdownGracefully();
         }
