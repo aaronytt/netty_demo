@@ -18,6 +18,6 @@ public class ServerInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(new IdleStateHandler(5,7,1, TimeUnit.SECONDS));
-        pipeline.addLast(new ServerHardler());
+        pipeline.addLast(new ServerHandler());
     }
 }

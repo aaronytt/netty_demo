@@ -10,7 +10,7 @@ import io.netty.handler.timeout.IdleStateEvent;
  * @Date: 17:51 2018/1/21
  * @Modiflid By:
  */
-public class ServerHardler extends ChannelInboundHandlerAdapter {
+public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
